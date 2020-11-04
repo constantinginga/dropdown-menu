@@ -150,6 +150,7 @@ const createArrow = () => {
   const arrowDiv = document.createElement('div');
   const arrow = document.createElement('i');
   arrow.classList.add('arrow');
+  arrowDiv.classList.add('arrow-container');
   arrowDiv.style.width = '1.6rem';
   arrowDiv.style.height = '1.6rem';
   arrowDiv.style.display = 'flex';
@@ -167,7 +168,12 @@ const createArrow = () => {
 };
 
 const hideAllDropdowns = (e, btnArr, listArr) => {
-  if (btnArr && !e.target.classList.contains('dd-btn')) {
+  if (
+    btnArr &&
+    !e.target.classList.contains('dd-btn') &&
+    !e.target.classList.contains('arrow') &&
+    !e.target.classList.contains('arrow-container')
+  ) {
     btnArr.forEach((btn, i) => {
       const arrows = document.querySelectorAll('.arrow');
       if (btn.style.borderColor === `${DARK_GREEN}`) {
