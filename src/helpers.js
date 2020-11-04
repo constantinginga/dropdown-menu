@@ -18,6 +18,7 @@ const BOX_SHADOW = '3px 3px 5px 2px rgba(5,107,104,0.15)';
 const ARROW_DOWN = 'rotate(45deg)';
 const ARROW_UP = 'rotate(225deg)';
 const SCALEDOWN_ANIM = 'scaleDown 500ms ease-in';
+const ELEM_TRANSITION = '300ms ease-in-out';
 const PADDING_LARGE = '.7rem 1.5rem';
 const PADDING_SMALL = '.7rem';
 
@@ -117,6 +118,7 @@ const styleDropdownBtn = (elem) => {
   elem.style.display = 'flex';
   elem.style.justifyContent = 'space-between';
   elem.style.alignItems = 'center';
+  elem.style.transition = `${ELEM_TRANSITION}`;
   setDynamicPadding(elem);
   elem.appendChild(createArrow());
 };
@@ -137,6 +139,7 @@ const styleDropdownItems = (items) => {
     item.style.textDecoration = 'none';
     item.style.fontSize = '1.3rem';
     item.style.color = `${TXT_COLOR}`;
+    item.style.transition = `${ELEM_TRANSITION}`;
     item.addEventListener('mouseover', () => {
       item.style.color = `${DARK_GREEN}`;
     });
