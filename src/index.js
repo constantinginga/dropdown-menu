@@ -1,6 +1,5 @@
 /* To-do:
     - fix bug where clicking arrow div doesn't show properly
-    - add padding to btn and list items to resize function
     - add transition for items hover and btn click and arrow and dropdownlist (same timer for all)
 */
 

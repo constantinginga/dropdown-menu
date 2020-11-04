@@ -76,7 +76,7 @@ const styleDropdownList = (elem) => {
   elem.style.marginTop = '1rem';
   elem.style.backgroundColor = '#fff';
   elem.style.borderRadius = '.5rem';
-  elem.style.BOX_SHADOW = `${BOX_SHADOW}`;
+  elem.style.boxShadow = `${BOX_SHADOW}`;
 };
 
 const toggleDropdownList = (btn, list) => {
@@ -110,14 +110,14 @@ const styleDropdownBtn = (elem) => {
   elem.style.fontSize = '1.3rem';
   elem.style.backgroundColor = '#fff';
   elem.style.color = `${TXT_COLOR}`;
-  elem.style.padding = elem.offsetWidth > 200 ? PADDING_LARGE : PADDING_SMALL;
   elem.style.border = '.1rem solid #fff';
   elem.style.borderRadius = '.5rem';
   elem.style.cursor = 'pointer';
-  elem.style.BOX_SHADOW = `${BOX_SHADOW}`;
+  elem.style.boxShadow = `${BOX_SHADOW}`;
   elem.style.display = 'flex';
   elem.style.justifyContent = 'space-between';
   elem.style.alignItems = 'center';
+  setDynamicPadding(elem);
   elem.appendChild(createArrow());
 };
 
@@ -128,12 +128,12 @@ const styleDropdownItems = (items) => {
 
   items.forEach((item) => {
     reset(item);
+    setDynamicPadding(item);
     if (item.classList.contains('dd-active')) {
       item.style.backgroundColor = `${LIGHT_GREEN}`;
     }
     item.style.display = 'block';
     item.style.opacity = '0';
-    item.style.padding = item.offsetWidth > 200 ? PADDING_LARGE : PADDING_SMALL;
     item.style.textDecoration = 'none';
     item.style.fontSize = '1.3rem';
     item.style.color = `${TXT_COLOR}`;
@@ -186,7 +186,16 @@ const hideAllDropdowns = (e, btnArr, listArr) => {
 const resizeDropdownList = (btnArr, listArr) => {
   if (btnArr && listArr) {
     btnArr.forEach((btn, i) => {
-      if (listArr[i]) listArr[i].style.width = `${btn.offsetWidth}px`;
+      setDynamicPadding(btn);
+      if (listArr[i]) {
+        const items = listArr[i].querySelectorAll('.dd-item');
+        listArr[i].style.width = `${btn.offsetWidth}px`;
+        items.forEach((item) => setDynamicPadding(item));
+      }
     });
   }
+};
+
+const setDynamicPadding = (item) => {
+  item.style.padding = item.offsetWidth > 200 ? PADDING_LARGE : PADDING_SMALL;
 };
