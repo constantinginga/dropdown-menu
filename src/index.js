@@ -1,15 +1,19 @@
 /* To-do:
-    - create separate module for style functions (helpers.js)
-    - add light and dark class (dd-light and dd-dark)
+    - fix bug where clicking arrow div doesn't show properly
+    - add padding to btn and list items to resize function
+    - add transition for items hover and btn click and arrow and dropdownlist (same timer for all)
 */
 
 import {
   reset,
+  createAnimation,
   styleDropdown,
   styleDropdownList,
   styleDropdownBtn,
   styleDropdownItems,
-  showDropdownList,
+  toggleDropdownList,
+  hideAllDropdowns,
+  resizeDropdownList,
 } from './helpers';
 
 const dropdown = document.querySelectorAll('.dropdown');
@@ -18,6 +22,7 @@ const dropdown = document.querySelectorAll('.dropdown');
   if (!dropdown) return;
 
   reset(document.querySelector('body'));
+  createAnimation();
 
   const dropdownBtn = [];
   const dropdownList = [];
@@ -33,13 +38,16 @@ const dropdown = document.querySelectorAll('.dropdown');
     dropdownBtn.forEach((btn, i) => {
       styleDropdownBtn(btn);
       btn.addEventListener('click', () => {
-        showDropdownList(btn, dropdownList[i]);
+        toggleDropdownList(btn, dropdownList[i]);
       });
     });
 
     if (dropdownList.length) {
       dropdownList.forEach((list) => {
         styleDropdownList(list);
+        list.addEventListener('animationend', (e) => {
+          if (e.animationName === 'scaleDown') list.style.display = 'none';
+        });
 
         // style each item
         let items = list.querySelectorAll('.dd-item');
@@ -49,5 +57,13 @@ const dropdown = document.querySelectorAll('.dropdown');
         }
       });
     }
+
+    document.addEventListener('click', (e) => {
+      hideAllDropdowns(e, dropdownBtn, dropdownList);
+    });
+
+    window.addEventListener('resize', () => {
+      resizeDropdownList(dropdownBtn, dropdownList);
+    });
   }
 })();
