@@ -1,6 +1,6 @@
 {
   "name": "dropdown-menu-top",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A responsive dropdown menu",
   "main": "index.js",
   "scripts": {
