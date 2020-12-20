@@ -2,9 +2,9 @@
 
 > Reusable, responsive dropdown menu. Practicing the use of npm, webpack, eslint and prettier.
 
-[npm package](https://www.npmjs.com/package/dropdown-menu-top)
+[npm package](https://www.npmjs.com/package/dropdown-menu-top) [Live Demo](https://constantinginga.github.io/dropdown-menu/)
+
 ![Image of the final result](https://i.imgur.com/lJbxrjM.gif)
-[Live Demo](https://constantinginga.github.io/dropdown-menu/)
 
 ### HTML Structure
 
